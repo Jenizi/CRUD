@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulário</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+        body { background-color: #39393f; color: white; }
+        form { color: LightGray; font-weight: bold; width: 80px; display: inline-block; font-family: 'Mitr', sans-serif; }
+        input { border: 2px solid gray; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="col-8 m-auto pt-2 pb-2 text-center">
+        <h1>Cadastro</h1>
+    </div>
+
+    <div class="col-8 m-auto pt-3 pb-2 text-center">
+        <a href="/" class="btn btn-info">Voltar</a>
+    </div>
+
+    <div class="col-8 m-auto pt-4 pb-2 text-center">
+        <div id="result"></div>
+
+        <form name="form" id="form" action="{% if db %}/update/{{db.id}}/{%else%}/create/{% endif %}" method="post">
+            {% csrf_token %}
+            <!--{{form.as_p}}-->
+            <div class="form-group mt-4">Nome: {{form.nome}}</div>
+            <div class="form-group mt-4">Sobrenome: {{form.sobrenome}}</div>
+            <div class="form-group mt-4">Idade: {{form.idade}}</div>
+            <div class="form-group mt-4">CPF: {{form.cpf}}</div>
+            <div class="form-group mt-4">Cidade: {{form.cidade}}</div>
+            <div class="form-group mt-4">Estado: {{form.estado}}</div>
+            <div class="form-group mt-4">Celular: {{form.celular}}</div>
+
+              <p>{{ form.cpf.errors }}</p>
+
+            <input type="submit" class="btn btn-success" value="Salvar">
+         </form>
+   </div>
+
+    {% load static %}
+</body>
+</html>
